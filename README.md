@@ -39,7 +39,7 @@ This is a simple Java project that lets you manage insurance-related data like c
 
 Make sure MySQL is running and create the DB:
 
-
+```bash
 mysql -u root -p
 CREATE DATABASE insurance_db;
 USE insurance_db;
