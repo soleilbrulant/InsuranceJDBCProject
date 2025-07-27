@@ -1,0 +1,28 @@
+# Insurance Management System - JDBC Project
+
+## File Types to Ignore
+*.class
+*.log
+*.jar.original
+*~
+.DS_Store
+
+## IDE
+.vscode/
+.idea/
+*.iml
+
+## Build directories
+target/
+build/classes/
+
+## Temporary files
+*.tmp
+*.temp
+
+## OS generated files
+Thumbs.db
+
+## Backup files
+*.backup
+*.bak
