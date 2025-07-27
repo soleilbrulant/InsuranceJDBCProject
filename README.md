@@ -1,196 +1,85 @@
-<<<<<<< HEAD
-# Insurance Management System
+📘 Insurance Management System (JDBC Project)
 
-## 📋 Description
-A comprehensive JDBC-based Insurance Management System that provides functionality for managing customers, policy types, and claims. Built using Java and MySQL with proper DAO pattern implementation.
+🔍 Overview
 
-## 🛠 Technologies Used
-- **Java 8+** - Core programming language
-- **JDBC** - Database connectivity
-- **MySQL** - Database management system
-- **Maven-style project structure** - Code organization
+This is a simple Java project that lets you manage insurance-related data like customers, policies, and claims using JDBC and MySQL. It’s built as a console-based application using the DAO pattern and connects to a MySQL database.
 
-## 📁 Project Structure
-```
+🛠 Technologies Used
+
+Java 8+
+JDBC
+MySQL
+Basic file structure (not using frameworks like Spring)
+📁 Folder Structure
+
 .
-├── src/
-│   └── main/
-│       └── java/
-│           └── com/
-│               └── insurance/
-│                   ├── Main.java                    # Application entry point
-│                   ├── dao/                         # Data Access Objects
-│                   │   ├── CustomerDAO.java
-│                   │   ├── PolicyTypeDAO.java
-│                   │   └── ClaimDAO.java
-│                   ├── model/                       # POJO classes
-│                   │   ├── Customer.java
-│                   │   ├── PolicyType.java
-│                   │   ├── PolicyCustomer.java
-│                   │   └── Claim.java
-│                   └── util/                        # Utility classes
-│                       └── DBConnection.java        # DB connection manager
-├── lib/
-│   └── mysql-connector-java-8.0.33.jar            # MySQL JDBC driver
-├── resources/
-│   └── schema.sql                                  # Database schema
-├── build/
-│   └── InsuranceProject.jar                        # Compiled application
-├── build.sh                                        # Build script
-├── run.sh                                          # Run script
-├── MANIFEST.MF                                     # JAR manifest
+├── src/                  # Java source files
+│   └── main/java/com/insurance/
+│       ├── Main.java
+│       ├── dao/
+│       ├── model/
+│       └── util/
+├── lib/                  # MySQL JDBC jar
+├── resources/            # Contains schema.sql
+├── build/                # Compiled output
+├── build.sh              # Shell script to compile
+├── run.sh                # Shell script to run
+├── MANIFEST.MF
 └── README.md
-```
+⚙️ How to Run
 
-## 🚀 Setup and Installation
-
-### Prerequisites
-- Java JDK 8 or higher
-- MySQL Server 5.7 or higher
-- MySQL JDBC Driver (provided in lib/)
-
-### Database Setup
-1. Create a MySQL database:
-```sql
+🧱 Setup
+Make sure you have Java and MySQL installed.
+Create a new MySQL database:
 CREATE DATABASE insurance_db;
-```
-
-2. Import the schema:
-```bash
+Import the schema:
 mysql -u root -p insurance_db < resources/schema.sql
-```
+Update DBConnection.java with your DB username/password.
+🔨 Build
+Run the shell script:
 
-3. Update database connection settings in `src/main/java/com/insurance/util/DBConnection.java`:
-```java
-private static final String URL = "jdbc:mysql://localhost:3306/insurance_db";
-private static final String USERNAME = "your_username";
-private static final String PASSWORD = "your_password";
-```
-
-### Building the Project
-
-#### Using the Build Script (Recommended)
-```bash
 ./build.sh
-```
+▶️ Run
+Run the app with:
 
-#### Manual Compilation
-```bash
-# Clean build directory
-rm -rf build/*
-mkdir -p build
-
-# Compile with dependencies
-javac -cp "lib/*" -d build/ src/main/java/com/insurance/util/DBConnection.java
-javac -cp "lib/*:build" -d build/ src/main/java/com/insurance/model/*.java
-javac -cp "lib/*:build" -d build/ src/main/java/com/insurance/dao/*.java
-javac -cp "lib/*:build" -d build/ src/main/java/com/insurance/Main.java
-
-# Copy resources
-cp resources/* build/
-
-# Create JAR
-cd build
-jar cfm InsuranceProject.jar ../MANIFEST.MF com/ schema.sql
-cd ..
-```
-
-### Running the Application
-
-#### Using the Run Script (Recommended)
-```bash
 ./run.sh
-```
+If that doesn't work:
 
-#### Manual Execution
-```bash
 java -cp "build:lib/*" com.insurance.Main
-```
+📌 Features
 
-## 🎯 Features
+Customers
+Add new customer
+View all customers
+Search by ID
+Update contact info
+Policy Types
+Add and view policies
+View by risk score range
+Claims
+File a claim
+View by status (Pending / Approved / Rejected)
+Update claim status
+🧪 Example Usage
 
-### Customer Management
-- Create new customers with complete profile information
-- View all customers
-- Search customers by ID
-- Update customer contact information
+When adding a customer, the app asks for name, DOB, address, email, etc.
+To file a claim, you’ll provide the policy ID, claim type, amount, etc.
+🗃 Database Tables
 
-### Policy Type Management
-- Create different policy types with risk scoring
-- View all available policy types
-- Filter policy types by risk score range
+customer
+policytype
+policy_customer
+claim
+riskassessment
+premium_payment
+❗ Notes
 
-### Claims Management
-- File new insurance claims
-- View claims by status (Pending, Approved, Rejected)
-- Update claim status
-- Track claim amounts and dates
+Uses PreparedStatement to avoid SQL injection
+Resources are handled using try-with-resources
+Project is console-based and good for learning JDBC basics
+❓ Common Errors
 
-## 💻 Usage Examples
-
-### Creating a New Customer
-The application will prompt for:
-- Personal information (name, DOB, contact)
-- Address details (city, state, postal code, country)
-- Identity information (email, national ID, gender)
-- Background information
-
-### Filing a Claim
-Required information:
-- Customer Policy ID
-- Incident date and application date
-- Claim type and amount
-- Claim notes and status
-
-## 🗃 Database Schema
-
-The system uses a normalized database schema with the following main entities:
-- **customer**: Stores customer information
-- **policytype**: Defines different insurance policy types  
-- **policy_customer**: Links customers to their policies
-- **claim**: Manages insurance claims
-- **riskassessment**: Tracks risk evaluations
-- **premium_payment**: Handles payment tracking
-
-## 🔧 Configuration
-
-### Database Connection
-Update the following in `DBConnection.java`:
-- Database URL
-- Username and password
-- Connection pool settings (if needed)
-
-### JAR File Contents
-The generated JAR includes:
-- All compiled `.class` files
-- Database schema (`schema.sql`)
-- MySQL JDBC driver dependency
-
-## 📝 Development Notes
-
-- Follows DAO (Data Access Object) pattern
-- Uses PreparedStatements to prevent SQL injection
-- Implements proper exception handling
-- Resource management with try-with-resources
-- Modular design for easy maintenance
-
-## 🚨 Troubleshooting
-
-### Common Issues
-
-1. **Database Connection Failed**
-   - Verify MySQL server is running
-   - Check database credentials
-   - Ensure database exists
-
-2. **ClassNotFoundException: MySQL Driver**
-   - Verify `mysql-connector-java-8.0.33.jar` is in lib/ directory
-   - Check classpath in run command
-
-3. **Compilation Errors**
-   - Ensure Java JDK is properly installed
-   - Verify all source files are present
-   - Check file permissions
-
-## 📄 License
-This project is created for educational purposes.
+Issue	Fix
+Can’t connect to DB	Check if MySQL is running and credentials are correct
+MySQL driver not found	Make sure the .jar is in lib/
+Compilation issues	Check Java version and file paths
