@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Insurance Management System
 
 ## 📋 Description
