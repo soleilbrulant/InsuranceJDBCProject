@@ -33,13 +33,8 @@ This is a simple Java project that lets you manage insurance-related data like c
 
 ---
 
-## ⚙️ How to Run
-
 ### 1️⃣ Setup the Database
 
-Make sure MySQL is running and create the DB:
-
-```bash
 mysql -u root -p
 CREATE DATABASE insurance_db;
 USE insurance_db;
@@ -53,6 +48,8 @@ Update DBConnection.java with your DB username/password.
 If that doesn't work:
 
 java -cp "build:lib/*" com.insurance.Main
+
+
 ✨ Features
 
 Add new customers
@@ -61,12 +58,16 @@ Add/view policies
 View risk scores
 File a claim
 View/update claim status (Pending / Approved / Rejected)
+
+
 💡 Example
 
 To file a claim:
 
 Provide policy ID, claim type, and other required info.
 Status will initially be Pending.
+
+
 📊 Tables Used
 
 customer
@@ -75,6 +76,8 @@ policy_customer
 claim
 riskassessment
 premium_payment
+
+
 🧪 Notes
 
 Uses PreparedStatement to prevent SQL injection
