@@ -1,70 +1,73 @@
-📘 Insurance Management System (JDBC Project)
+# 🧾 Insurance Management System (JDBC + MySQL)
 
-🔍 Overview
+This is a simple Java project that lets you manage insurance-related data like customers, policies, and claims using **JDBC** and **MySQL**. It's built as a console-based application using the **DAO pattern**, following a clean folder structure and SQL schema.
 
-This is a simple Java project that lets you manage insurance-related data like customers, policies, and claims using JDBC and MySQL. It’s built as a console-based application using the DAO pattern and connects to a MySQL database.
+---
 
-🛠 Technologies Used
+## 🛠 Technologies Used
 
-Java 8+
-JDBC
-MySQL
-Basic file structure (not using frameworks like Spring)
-📁 Folder Structure
+- Java 8+
+- MySQL
+- JDBC
+- Basic shell scripts (no frameworks)
+
+---
+
+## 📁 Project Structure
 
 .
-├── src/                  # Java source files
-│   └── main/java/com/insurance/
-│       ├── Main.java
-│       ├── dao/
-│       ├── model/
-│       └── util/
-├── lib/                  # MySQL JDBC jar
-├── resources/            # Contains schema.sql
-├── build/                # Compiled output
-├── build.sh              # Shell script to compile
-├── run.sh                # Shell script to run
-├── MANIFEST.MF
+├── src/main/java/com/insurance/ # Main Java classes
+│ ├── Main.java # Entry point
+│ ├── dao/ # DAO classes
+│ ├── model/ # Entity models
+│ └── util/ # DB connection logic
+│
+├── lib/ # MySQL JDBC JAR
+├── resources/ # schema.sql
+├── build/ # Compiled output (.class, .jar)
+├── build.sh # Compile script
+├── run.sh # Run script
+├── MANIFEST.MF # Manifest for jar
 └── README.md
-⚙️ How to Run
 
-🧱 Setup
-Make sure you have Java and MySQL installed.
-Create a new MySQL database:
+
+---
+
+## ⚙️ How to Run
+
+### 1️⃣ Setup the Database
+
+Make sure MySQL is running and create the DB:
+
+```bash
+mysql -u root -p
 CREATE DATABASE insurance_db;
-Import the schema:
-mysql -u root -p insurance_db < resources/schema.sql
+USE insurance_db;
+source resources/schema.sql;
 Update DBConnection.java with your DB username/password.
-🔨 Build
-Run the shell script:
 
+2️⃣ Build the Project
 ./build.sh
-▶️ Run
-Run the app with:
-
+3️⃣ Run the App
 ./run.sh
 If that doesn't work:
 
 java -cp "build:lib/*" com.insurance.Main
-📌 Features
+✨ Features
 
-Customers
-Add new customer
-View all customers
-Search by ID
-Update contact info
-Policy Types
-Add and view policies
-View by risk score range
-Claims
+Add new customers
+View all customers / search by ID
+Add/view policies
+View risk scores
 File a claim
-View by status (Pending / Approved / Rejected)
-Update claim status
-🧪 Example Usage
+View/update claim status (Pending / Approved / Rejected)
+💡 Example
 
-When adding a customer, the app asks for name, DOB, address, email, etc.
-To file a claim, you’ll provide the policy ID, claim type, amount, etc.
-🗃 Database Tables
+To file a claim:
+
+Provide policy ID, claim type, and other required info.
+Status will initially be Pending.
+📊 Tables Used
 
 customer
 policytype
@@ -72,14 +75,9 @@ policy_customer
 claim
 riskassessment
 premium_payment
-❗ Notes
+🧪 Notes
 
-Uses PreparedStatement to avoid SQL injection
-Resources are handled using try-with-resources
-Project is console-based and good for learning JDBC basics
-❓ Common Errors
-
-Issue	Fix
-Can’t connect to DB	Check if MySQL is running and credentials are correct
-MySQL driver not found	Make sure the .jar is in lib/
-Compilation issues	Check Java version and file paths
+Uses PreparedStatement to prevent SQL injection
+Follows try-with-resources
+No frameworks (pure JDBC)
+Ideal for understanding core DBMS-Java interaction
